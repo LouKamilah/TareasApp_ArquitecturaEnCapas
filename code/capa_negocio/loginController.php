@@ -38,6 +38,14 @@ class LoginController {
             return false;
         }
     }
+
+    public function logout() {
+        session_start();
+        session_unset();
+        session_destroy();
+        header("Location: ../capa_presentacion/index.php");
+        exit();
+    }
 }
 
 //Pasar a las funciones los datos recibidos por POST
@@ -57,6 +65,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email = $_POST['email'];
             $password = $_POST['password'];
             $controller->register($username, $email, $password);
+        } elseif ($action == 'logout') {
+            $controller->logout();
+        } else {
+            echo "Acción no definida";
         }
     } else {
         echo "Acción no definida";

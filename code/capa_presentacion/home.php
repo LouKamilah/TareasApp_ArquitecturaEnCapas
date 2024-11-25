@@ -16,7 +16,12 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-
+    <div class="flex justify-end p-4">
+        <form action="../capa_negocio/loginController.php?action=logout" method="post">
+            <button type="submit" class="font-medium text-white bg-black px-3 py-1 rounded-sm">Cerrar
+                sesión</button>
+        </form>
+    </div>
     <div class="relative overflow-x-auto sm:rounded-lg mt-8">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
