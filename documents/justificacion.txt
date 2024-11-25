@@ -1,4 +1,27 @@
-Arquitectura escogida
-Justificación arquitectura escogida
-Principales componentes
-Tecnologias usadas
+ARQUITECTURA ESCOGIDA
+Arquitectura en capas
+
+JUSTIFICACIÓN DE ARQUITECTURA
+Para el presente proyecto de software como equipo se eligió "ARQUITECTURA EN CAPAS" por las siguientes razones a considerar
+1. Separación de responsabilidades: Cada capa se encargará de una función específica (presentación, lógica de negocio y acceso a datos). Esto facilita el desarrollo, mantenimiento y 	escalabilidad del sistema teniendo en mente el plazo de tiempo fijado. 
+
+2. Reusabilidad: Los componentes de cada capa pueden ser reutilizados en otros proyectos, lo que agiliza el desarrollo y nos da la oportunidad de seguir escalando el proyecto con nuevas características sin sacrificar el código original.
+
+3. Facilidad de prueba: Al separar las capas, es más sencillo realizar pruebas unitarias y de integración en cada componente de forma independiente.
+
+4. Mantenibilidad: Los cambios en una capa tienen un impacto limitado en las otras capas, lo que facilita la evolución del sistema a lo largo del tiempo y el aprendizaje para colaboradores principiantes.
+
+PRINCIPALES COMPONENTES
+Dentro de los principales componentes podemos destacar: 
+Capa de Presentación: Su principal función será la interacción del usuario con la aplicación, capturando y validando los datos ingresados.
+Interfaz de usuario (UI): Desarrollada con HTML, CSS y Tailwind CSS para una apariencia intuitiva y responsiva.
+Capa de Negocio: Define las reglas que gobiernan el comportamiento de la aplicación, por ejemplo, las validaciones de los datos de login y creación de tareas existentes. 
+Lógica del CRUD: Contiene la lógica principal del TODO list, como la creación, edición, eliminación y búsqueda de tareas.
+Capa de Datos: Acceso a la base de datos utilizando PHP y MySQL para rescatar y almacenar la información de las tareas dentro de la Base de Datos.
+
+TECNOLOGÍAS UTILIZADAS
+Como se mencionó anteriormente se utilizarán las siguientes tecnologías con el fin de agilizar y facilitar el desarrollo a función del tiempo asignado: 
+PHP
+CSS
+Tailwind CSS
+MySQL
