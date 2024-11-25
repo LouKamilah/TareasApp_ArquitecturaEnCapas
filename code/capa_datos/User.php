@@ -11,17 +11,18 @@ class User {
     }
 
     public function login($email, $password) {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE email = :email AND password = :password";
+        $query = "SELECT * FROM " . $this->table_name . " WHERE email = :email";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $password);
         $stmt->execute();
 
         if ($stmt->rowCount() > 0) {
-            return true;
-        } else {
-            return false;
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (password_verify($password, $row['password'])) {
+                return true;
+            }
         }
+        return false;
     }
 
     public function register($username, $email, $password) {
@@ -29,15 +30,22 @@ class User {
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':username', $username);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $password);
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+        $stmt->bindParam(':password', $hashed_password);
 
-        if ($stmt->execute()) {
-            return true;
-        } else {
+        try {
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                $errorInfo = $stmt->errorInfo();
+                echo "Error al ejecutar la consulta: " . $errorInfo[2];
+                return false;
+            }
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
             return false;
         }
     }
 }
-
 
 ?>
