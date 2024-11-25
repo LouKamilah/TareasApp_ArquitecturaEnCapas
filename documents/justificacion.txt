@@ -1,0 +1,4 @@
+Arquitectura escogida
+Justificación arquitectura escogida
+Principales componentes
+Tecnologias usadas
