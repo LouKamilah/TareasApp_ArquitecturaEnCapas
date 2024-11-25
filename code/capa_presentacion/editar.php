@@ -40,8 +40,9 @@ if (!$tarea) {
         <select id="estado" name="estado" required>
             <option value="pendiente" <?php echo $tarea['estado'] === 'pendiente' ? 'selected' : ''; ?>>Pendiente
             </option>
-            <option value="completada" <?php echo $tarea['estado'] === 'completada' ? 'selected' : ''; ?>>Completada
+            <option value="en_proceso" <?php echo $tarea['estado'] === 'en_proceso' ? 'selected' : ''; ?>>En Proceso
             </option>
+            <option value="completo" <?php echo $tarea['estado'] === 'completo' ? 'selected' : ''; ?>>Completo</option>
         </select>
         <button type="submit">Guardar Cambios</button>
     </form>
