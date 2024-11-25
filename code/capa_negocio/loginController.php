@@ -13,7 +13,10 @@ class LoginController {
     }
 
     public function login($email, $password) {
-        if ($this->user->login($email, $password)) {
+        $user = $this->user->login($email, $password);
+        if ($user) {
+            session_start();
+            $_SESSION['user_id'] = $user['id']; // Almacena el user_id en la sesión
             header("Location: ../capa_presentacion/home.php");
             exit();
         } else {

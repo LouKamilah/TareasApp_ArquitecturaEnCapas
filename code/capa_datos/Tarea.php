@@ -76,8 +76,20 @@ class Tarea {
         }
     }
 
-    
-}
+    public function getTareasByUserId($user_id) {
+        $query = "SELECT id_Tarea, titulo, descripcion, date_asig, estado, date_create, update_at 
+                  FROM " . $this->table_tareas . " 
+                  WHERE user_id = :user_id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->execute();
 
+        if ($stmt->rowCount() > 0) {
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            return [];
+        }
+    }
+}
 
 ?>

@@ -1,47 +1,32 @@
 <?php
 require_once '../capa_datos/conexion.php';
-require_once '../capa_Datos/tarea.php';
+require_once '../capa_Datos/Tarea.php';
+require_once '../capa_Datos/User.php';
+
 
 class TareasController {
-    private $user;
+    private $db;
 
     // ojo con el constructor ¡¡NO OLVIDAR!! 👁️
     public function __construct() {
         $database = new Database();
-        $db = $database->getConnection();
-        $this->user = new User($db);
+        $this->db = $database->getConnection();
     }
 
-    public function login($email, $password) {
-        if ($this->user->login($email, $password)) {
-            header("Location: ../capa_presentacion/home.php");
-            exit();
-        } else {
-            echo "Login fallido";
-        }
+    public function getTareasByUserId($user_id) {
+        $tarea = new Tarea($this->db);
+        return $tarea->getTareasByUserId($user_id);
     }
 
-    public function register($username, $email, $password) {
-        if ($this->user->register($username, $email, $password)) {
-            echo "Registro exitoso";
-        } else {
-            echo "Registro fallido";
-        }
+    public function editById($id_Tarea) {
+        $tarea = new Tarea($this->db);
+        return $tarea->editById($id_Tarea);
+    }
+
+    public function deleteById($id_Tarea) {
+        $tarea = new Tarea($this->db);
+        return $tarea->deleteById($id_Tarea);
     }
 }
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $controller = new LoginController();
-
-    $action = $_POST['action'];
-    if ($action == 'login') {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-        $controller->login($email, $password);
-    }
-}
-
-//$controller = new LoginController();
-
 
 ?>
