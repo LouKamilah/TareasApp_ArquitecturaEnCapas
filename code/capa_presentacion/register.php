@@ -5,6 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../src/output.css" rel="stylesheet">
+
+    <!-- Validación de contraseñas -->
+    <script>
+    function validateForm() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirm_password").value;
+        if (password != confirmPassword) {
+            alert("Las contraseñas no coinciden.");
+            return false;
+        }
+        return true;
+    }
+    </script>
+
 </head>
 
 <body>
@@ -23,10 +37,17 @@
             <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                        Inicio de sesión
+                        Registro
                     </h1>
-                    <form class="space-y-4 md:space-y-6" action="../capa_negocio/loginController.php?action=login"
-                        method="POST">
+                    <form class="space-y-4 md:space-y-6" action="../capa_negocio/loginController.php?action=register"
+                        method="POST" onsubmit="return validateForm()">
+                        <div>
+                            <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Nombre de
+                                usuario</label>
+                            <input type="text" name="username" id="username"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-black focus:border-black block w-full p-2.5 "
+                                placeholder="Nombre de usuario" required="">
+                        </div>
                         <div>
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
                             <input type="email" name="email" id="email"
@@ -40,12 +61,18 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-black focus:border-black block w-full p-2.5 "
                                 required="">
                         </div>
+                        <div>
+                            <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900">Repetir
+                                contraseña</label>
+                            <input type="password" name="confirm_password" id="confirm_password" placeholder="••••••••"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-black focus:border-black block w-full p-2.5 "
+                                required="">
+                        </div>
                         <button type="submit"
-                            class="w-full text-white bg-black focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">Iniciar
-                            sesión</button>
+                            class="w-full text-white bg-black focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">Registrarse</button>
                         <p class="text-sm font-light text-gray-500">
-                            ¿Aún no tiene una cuenta? <a href="./register.php"
-                                class="font-medium text-primary-600 hover:underline">Regístrese</a>
+                            ¿Ya tienes una cuenta? <a href="index.php"
+                                class="font-medium text-primary-600 hover:underline">Inicia sesión</a>
                         </p>
                     </form>
                 </div>
