@@ -19,7 +19,7 @@ class User {
         if ($stmt->rowCount() > 0) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             if (password_verify($password, $row['password'])) {
-                return true;
+                return $row; // Devuelve los datos del usuario
             }
         }
         return false;

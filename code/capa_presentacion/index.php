@@ -22,6 +22,10 @@
         </script>";
         unset($_SESSION['login_error']);
     }
+    if (isset($_SESSION['user_id'])) {
+        header("Location: home.php");
+        exit();
+    }
     ?>
 
     <section class="bg-gray-50">
