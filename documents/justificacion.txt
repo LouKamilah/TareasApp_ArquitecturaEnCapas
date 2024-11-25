@@ -23,5 +23,5 @@ TECNOLOGÍAS UTILIZADAS
 Como se mencionó anteriormente se utilizarán las siguientes tecnologías con el fin de agilizar y facilitar el desarrollo a función del tiempo asignado: 
 PHP
 CSS
-Tailwind CSS
+Tailwind CSS y Flowbite
 MySQL
