@@ -72,7 +72,7 @@ if (!isset($_SESSION['user_id'])) {
                 ?>
             </tbody>
         </table>
-
+        <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"> <a href="crear-tarea.php">Crear Tarea</a></button>
         <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4"
             aria-label="Table navigation">
             <span class="text-sm font-normal text-gray-500 mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing
