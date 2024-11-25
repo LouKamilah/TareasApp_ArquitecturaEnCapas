@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -39,142 +46,25 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="border-b odd:bg-white even:bg-gray-50 ">
-                    <td class="w-4 p-4">
-                    </td>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                        1
-                    </th>
-                    <td class="px-6 py-4">
-                        Carozzi
-                    </td>
-                    <td class="px-6 py-4">
-                        12
-                    </td>
-                    <td class="px-6 py-4">
-                        Eliminado
-                    </td>
-                    <td class="px-6 py-4">
-                        Eliminado
-                    </td>
-                    <td class="px-6 py-4">
-                        03-10-2024
-                    </td>
-                    <td class="px-2 lg:px-1">
-                        <a href="#"
-                            class="font-medium text-green-900 bg-green-200 px-3 py-1 rounded-sm hover:underline">Editar</a>
-                    </td>
-                    <td class="px-2 lg:px-1">
-                        <a href="#"
-                            class="font-medium text-red-900 bg-red-200 px-3 py-1 rounded-sm hover:underline">Eliminar</a>
-                    </td>
-                    <td class="px-2 lg:px-1">
-                        <a href="#"
-                            class="font-medium text-blue-900 bg-blue-200 px-3 py-1 rounded-sm hover:underline">Detalles</a>
-                    </td>
-                </tr>
-                <tr class="border-b odd:bg-white even:bg-gray-50 ">
-                    <td class="w-4 p-4">
-                    </td>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                        1
-                    </th>
-                    <td class="px-6 py-4">
-                        Carozzi
-                    </td>
-                    <td class="px-6 py-4">
-                        12
-                    </td>
-                    <td class="px-6 py-4">
-                        Eliminado
-                    </td>
-                    <td class="px-6 py-4">
-                        Eliminado
-                    </td>
-                    <td class="px-6 py-4">
-                        03-10-2024
-                    </td>
-                    <td class="px-2 lg:px-1">
-                        <a href="#"
-                            class="font-medium text-green-900 bg-green-200 px-3 py-1 rounded-sm hover:underline">Editar</a>
-                    </td>
-                    <td class="px-2 lg:px-1">
-                        <a href="#"
-                            class="font-medium text-red-900 bg-red-200 px-3 py-1 rounded-sm hover:underline">Eliminar</a>
-                    </td>
-                    <td class="px-2 lg:px-1">
-                        <a href="#"
-                            class="font-medium text-blue-900 bg-blue-200 px-3 py-1 rounded-sm hover:underline">Detalles</a>
-                    </td>
-                </tr>
-                <tr class="border-b odd:bg-white even:bg-gray-50 ">
-                    <td class="w-4 p-4">
-                    </td>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                        1
-                    </th>
-                    <td class="px-6 py-4">
-                        Carozzi
-                    </td>
-                    <td class="px-6 py-4">
-                        12
-                    </td>
-                    <td class="px-6 py-4">
-                        Eliminado
-                    </td>
-                    <td class="px-6 py-4">
-                        Eliminado
-                    </td>
-                    <td class="px-6 py-4">
-                        03-10-2024
-                    </td>
-                    <td class="px-2 lg:px-1">
-                        <a href="#"
-                            class="font-medium text-green-900 bg-green-200 px-3 py-1 rounded-sm hover:underline">Editar</a>
-                    </td>
-                    <td class="px-2 lg:px-1">
-                        <a href="#"
-                            class="font-medium text-red-900 bg-red-200 px-3 py-1 rounded-sm hover:underline">Eliminar</a>
-                    </td>
-                    <td class="px-2 lg:px-1">
-                        <a href="#"
-                            class="font-medium text-blue-900 bg-blue-200 px-3 py-1 rounded-sm hover:underline">Detalles</a>
-                    </td>
-                </tr>
-                <tr class="border-b odd:bg-white even:bg-gray-50 ">
-                    <td class="w-4 p-4">
-                    </td>
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                        1
-                    </th>
-                    <td class="px-6 py-4">
-                        Carozzi
-                    </td>
-                    <td class="px-6 py-4">
-                        12
-                    </td>
-                    <td class="px-6 py-4">
-                        Eliminado
-                    </td>
-                    <td class="px-6 py-4">
-                        Eliminado
-                    </td>
-                    <td class="px-6 py-4">
-                        03-10-2024
-                    </td>
-                    <td class="px-2 lg:px-1">
-                        <a href="#"
-                            class="font-medium text-green-900 bg-green-200 px-3 py-1 rounded-sm hover:underline">Editar</a>
-                    </td>
-                    <td class="px-2 lg:px-1">
-                        <a href="#"
-                            class="font-medium text-red-900 bg-red-200 px-3 py-1 rounded-sm hover:underline">Eliminar</a>
-                    </td>
-                    <td class="px-2 lg:px-1">
-                        <a href="#"
-                            class="font-medium text-blue-900 bg-blue-200 px-3 py-1 rounded-sm hover:underline">Detalles</a>
-                    </td>
-                </tr>
+                <?php
+                require_once '../capa_negocio/tareasController.php';
+                $tareasController = new TareasController();
+                $tareas = $tareasController->getTareasByUserId($_SESSION['user_id']); // Asegúrate de que 'user_id' esté en la sesión
+
+                foreach ($tareas as $tarea) {
+                    echo "<tr class='border-b odd:bg-white even:bg-gray-50 '>";
+                    echo "<td class='w-4 p-4'></td>";
+                    echo "<th scope='row' class='px-6 py-4 font-medium text-gray-900 whitespace-nowrap '>{$tarea['id_Tarea']}</th>";
+                    echo "<td class='px-6 py-4'>{$tarea['titulo']}</td>";
+                    echo "<td class='px-6 py-4'>{$tarea['descripcion']}</td>";
+                    echo "<td class='px-6 py-4'>{$tarea['estado']}</td>";
+                    echo "<td class='px-6 py-4'>{$tarea['date_asig']}</td>";
+                    echo "<td class='px-6 py-4'>{$tarea['update_at']}</td>";
+                    echo "<td class='px-2 lg:px-1'><a href='#' class='font-medium text-green-900 bg-green-200 px-3 py-1 rounded-sm hover:underline'>Editar</a></td>";
+                    echo "<td class='px-2 lg:px-1'><a href='#' class='font-medium text-red-900 bg-red-200 px-3 py-1 rounded-sm hover:underline'>Eliminar</a></td>";
+                    echo "</tr>";
+                }
+                ?>
             </tbody>
         </table>
 
