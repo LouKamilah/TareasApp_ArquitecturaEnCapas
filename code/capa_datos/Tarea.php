@@ -43,25 +43,17 @@ class Tarea {
         }
     }
 
-    public function update($titulo, $descripcion, $date_asig, $estado, $update_at, $id_Tarea) {
-        $query = "UPDATE " . $this->table_tareas . " SET titulo = :titulo, descripcion = :descripcion, 
-              date_asig = :date_asig, estado = :estado, 
-              update_at = :update_at 
-                WHERE id_Tarea = :id_Tarea";
-
+    public function editById($id_Tarea, $titulo, $descripcion, $estado) {
+        $query = "UPDATE " . $this->table_tareas . " 
+                  SET titulo = :titulo, descripcion = :descripcion, estado = :estado, update_at = CURRENT_TIMESTAMP
+                  WHERE id_Tarea = :id_Tarea";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':titulo', $titulo);
         $stmt->bindParam(':descripcion', $descripcion);
-        $stmt->bindParam(':date_asig', $date_asig);
         $stmt->bindParam(':estado', $estado);
-        $stmt->bindParam(':update_at', $update_at);
         $stmt->bindParam(':id_Tarea', $id_Tarea);
-
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+    
+        return $stmt->execute();
     }
 
     public function delete($id_Tarea) {
@@ -89,6 +81,13 @@ class Tarea {
         } else {
             return [];
         }
+    }
+    public function getById($id_Tarea) {
+        $query = "SELECT * FROM " . $this->table_tareas . " WHERE id_Tarea = :id_Tarea";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id_Tarea', $id_Tarea);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
 

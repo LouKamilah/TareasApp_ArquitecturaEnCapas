@@ -18,14 +18,37 @@ class TareasController {
         return $tarea->getTareasByUserId($user_id);
     }
 
-    public function editById($id_Tarea) {
+    public function editById($id_Tarea, $titulo, $descripcion, $estado) {
         $tarea = new Tarea($this->db);
-        return $tarea->editById($id_Tarea);
+        return $tarea->editById($id_Tarea, $titulo, $descripcion, $estado);
+    }
+
+    public function getTareaById($id_Tarea) {
+        $tarea = new Tarea($this->db);
+        return $tarea->getById($id_Tarea); // Asume que el método getById existe en la capa de datos
     }
 
     public function deleteById($id_Tarea) {
         $tarea = new Tarea($this->db);
         return $tarea->deleteById($id_Tarea);
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_GET['action']) && $_GET['action'] === 'editar_tarea') {
+        $id_Tarea = $_POST['id_Tarea'];
+        $titulo = $_POST['titulo'];
+        $descripcion = $_POST['descripcion'];
+        $estado = $_POST['estado'];
+
+        $tareasController = new TareasController();
+        $result = $tareasController->editById($id_Tarea, $titulo, $descripcion, $estado);
+
+        if ($result) {
+            header("Location: home.php?mensaje=actualizado");
+        } else {
+            echo "Error al actualizar la tarea.";
+        }
     }
 }
 
