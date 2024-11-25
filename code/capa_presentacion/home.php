@@ -65,8 +65,22 @@ if (!isset($_SESSION['user_id'])) {
                     echo "<td class='px-6 py-4'>{$tarea['estado']}</td>";
                     echo "<td class='px-6 py-4'>{$tarea['date_asig']}</td>";
                     echo "<td class='px-6 py-4'>{$tarea['update_at']}</td>";
-                    echo "<td class='px-2 lg:px-1'><a href='#' class='font-medium text-green-900 bg-green-200 px-3 py-1 rounded-sm hover:underline'>Editar</a></td>";
-                    echo "<td class='px-2 lg:px-1'><a href='#' class='font-medium text-red-900 bg-red-200 px-3 py-1 rounded-sm hover:underline'>Eliminar</a></td>";
+                    echo '<td class="px-2 lg:px-1">
+                    <form method="GET" action="../capa_presentacion/Editar.php">
+                    <input type="hidden" name="id_Tarea" value="' . $tarea['id_Tarea'] . '">
+                    <button type="submit" class="font-medium text-green-900 bg-green-200 px-3 py-1 rounded-sm hover:underline">
+                    Editar
+                    </button>
+                    </form>
+                    </td>';
+                    echo "<td class='px-2 lg:px-1'>
+                        <form method='POST' action='../capa_negocio/tareasController.php?action=eliminar_tarea'>
+                            <input type='hidden' name='id_Tarea' value='{$tarea['id_Tarea']}'>
+                            <button type='submit' class='font-medium text-red-900 bg-red-200 px-3 py-1 rounded-sm hover:underline'>
+                                Eliminar
+                            </button>
+                        </form>
+                    </td>";
                     echo "</tr>";
                 }
                 ?>
