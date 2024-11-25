@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../src/output.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Validación de contraseñas -->
     <script>
@@ -12,7 +13,11 @@
         var password = document.getElementById("password").value;
         var confirmPassword = document.getElementById("confirm_password").value;
         if (password != confirmPassword) {
-            alert("Las contraseñas no coinciden.");
+            Swal.fire({
+                title: "Error",
+                text: "Las contraseñas no coinciden",
+                icon: "error"
+            });;
             return false;
         }
         return true;
@@ -22,6 +27,22 @@
 </head>
 
 <body>
+
+    <?php
+    session_start();
+    if (isset($_SESSION['register_success'])) {
+        echo "<script>
+            Swal.fire({
+                title: 'Éxito',
+                text: 'La cuenta ha sido creada correctamente',
+                icon: 'success'
+            }).then(function() {
+                window.location = 'index.php';
+            });
+        </script>";
+        unset($_SESSION['register_success']);
+    }
+    ?>
 
     <section class="bg-gray-50">
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
