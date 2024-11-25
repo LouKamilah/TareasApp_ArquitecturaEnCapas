@@ -17,14 +17,19 @@ class LoginController {
             header("Location: ../capa_presentacion/home.php");
             exit();
         } else {
-            echo "Login fallido";
+            session_start();
+            $_SESSION['login_error'] = true;
+            header("Location: ../capa_presentacion/index.php");
+            exit();
         }
     }
 
     public function register($username, $email, $password) {
         if ($this->user->register($username, $email, $password)) {
-            echo "Registro exitoso";
-            return true;
+            session_start();
+            $_SESSION['register_success'] = true;
+            header("Location: ../capa_presentacion/register.php");
+            exit();
         } else {
             echo "Registro fallido";
             return false;
@@ -32,7 +37,7 @@ class LoginController {
     }
 }
 
-
+//Pasar a las funciones los datos recibidos por POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $controller = new LoginController();
 
@@ -48,12 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = $_POST['username'];
             $email = $_POST['email'];
             $password = $_POST['password'];
-            if ($controller->register($username, $email, $password)) {
-                header("Location: ../capa_presentacion/index.php");
-                exit();
-            } else {
-                echo "Registro fallido";
-            }
+            $controller->register($username, $email, $password);
         }
     } else {
         echo "Acción no definida";

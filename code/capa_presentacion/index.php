@@ -5,9 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../src/output.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
+
+    <?php
+    session_start();
+    if (isset($_SESSION['login_error'])) {
+        echo "<script>
+            Swal.fire({
+                title: 'Error',
+                text: 'Email o contraseña incorrecta',
+                icon: 'error'
+            });
+        </script>";
+        unset($_SESSION['login_error']);
+    }
+    ?>
 
     <section class="bg-gray-50">
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
