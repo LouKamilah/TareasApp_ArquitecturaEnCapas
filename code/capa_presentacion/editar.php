@@ -17,15 +17,14 @@ if (!$tarea) {
     exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Tarea</title>
     <link href="../src/output.css" rel="stylesheet">
+    <title>TO DO APP</title>
 </head>
 
 <body class="bg-gray-100">
@@ -50,32 +49,42 @@ if (!$tarea) {
         </div>
     </nav>
 
-    <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-semibold mb-4 text-center">Editar Tarea</h1>
-        <form method="POST" action="../capa_negocio/tareasController.php?action=editar_tarea"
-            class="bg-white p-6 rounded shadow-md">
+    <h1 class="text-2xl font-semibold mb-4 my-10 text-center">Editar tarea</h1>
+
+    <div class="flex justify-center p-4">
+        <form action="../capa_negocio/tareasController.php?action=editar_tarea" method="post"
+            class="bg-white p-6 rounded-lg shadow-md w-full max-w-lg space-y-4">
             <input type="hidden" name="id_Tarea" value="<?php echo $tarea['id_Tarea']; ?>">
-            <div class="mb-4">
-                <label for="titulo" class="block text-gray-700">Título:</label>
-                <input type="text" id="titulo" name="titulo" value="<?php echo $tarea['titulo']; ?>" required
-                    class="w-full p-2 border border-gray-300 rounded mt-1">
+            <div>
+                <label for="titulo" class="block text-sm font-medium text-gray-700">Título</label>
+                <input type="text" name="titulo" id="titulo" placeholder="Título" required
+                    value="<?php echo $tarea['titulo']; ?>"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
             </div>
-            <div class="mb-4">
-                <label for="descripcion" class="block text-gray-700">Descripción:</label>
-                <textarea id="descripcion" name="descripcion" required
-                    class="w-full p-2 border border-gray-300 rounded mt-1"><?php echo $tarea['descripcion']; ?></textarea>
+            <div>
+                <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripción</label>
+                <input type="text" name="descripcion" id="descripcion" placeholder="Descripción" required
+                    value=<?php echo $tarea['descripcion']; ?>
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
             </div>
-            <div class="mb-4">
-                <label for="estado" class="block text-gray-700">Estado:</label>
-                <select id="estado" name="estado" required class="w-full p-2 border border-gray-300 rounded mt-1">
+            <div>
+                <label for="estado" class="block text-sm font-medium text-gray-700">Estado</label>
+                <select id="estado" name="estado" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     <option value="pendiente">Pendiente</option>
                     <option value="en_proceso">En Proceso</option>
                     <option value="completo">Completo</option>
                 </select>
             </div>
-            <button type="submit" class="bg-black text-white px-4 py-2 rounded">Guardar Cambios</button>
+            <div class="flex justify-end">
+                <button type="submit" class="font-medium text-white bg-black px-3 py-1 rounded-sm">Editar
+                    Tarea</button>
+            </div>
         </form>
     </div>
+
+    <script src="../../node_modules/flowbite/dist/flowbite.min.js"></script>
+
 </body>
 
 </html>
