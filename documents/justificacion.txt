@@ -1,5 +1,4 @@
-ARQUITECTURA ESCOGIDA
-Arquitectura en capas
+ARQUITECTURA ESCOGIDA: Arquitectura en capas
 
 JUSTIFICACIÓN DE ARQUITECTURA
 Para el presente proyecto de software como equipo se eligió "ARQUITECTURA EN CAPAS" por las siguientes razones a considerar
@@ -13,15 +12,20 @@ Para el presente proyecto de software como equipo se eligió "ARQUITECTURA EN CA
 
 PRINCIPALES COMPONENTES
 Dentro de los principales componentes podemos destacar: 
-Capa de Presentación: Su principal función será la interacción del usuario con la aplicación, capturando y validando los datos ingresados.
-Interfaz de usuario (UI): Desarrollada con HTML, CSS y Tailwind CSS para una apariencia intuitiva y responsiva.
-Capa de Negocio: Define las reglas que gobiernan el comportamiento de la aplicación, por ejemplo, las validaciones de los datos de login y creación de tareas existentes. 
-Lógica del CRUD: Contiene la lógica principal del TODO list, como la creación, edición, eliminación y búsqueda de tareas.
-Capa de Datos: Acceso a la base de datos utilizando PHP y MySQL para rescatar y almacenar la información de las tareas dentro de la Base de Datos.
+
+-Capa de Presentación: Su principal función será la interacción del usuario con la aplicación, capturando y validando los datos ingresados.
+
+-Interfaz de usuario (UI): Desarrollada con HTML, CSS y Tailwind CSS para una apariencia intuitiva y responsiva.
+
+-Capa de Negocio: Define las reglas que gobiernan el comportamiento de la aplicación, por ejemplo, las validaciones de los datos de login y creación de tareas existentes. 
+
+-Lógica del CRUD: Contiene la lógica principal del TODO list, como la creación, edición, eliminación y búsqueda de tareas.
+
+-Capa de Datos: Acceso a la base de datos utilizando PHP y MySQL para rescatar y almacenar la información de las tareas dentro de la Base de Datos.
 
 TECNOLOGÍAS UTILIZADAS
 Como se mencionó anteriormente se utilizarán las siguientes tecnologías con el fin de agilizar y facilitar el desarrollo a función del tiempo asignado: 
-PHP
-CSS
-Tailwind CSS y Flowbite
-MySQL
+-PHP
+-CSS
+-Tailwind CSS y Flowbite
+-MySQL
