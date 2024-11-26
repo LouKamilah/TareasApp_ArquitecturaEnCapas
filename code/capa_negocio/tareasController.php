@@ -25,7 +25,7 @@ class TareasController {
 
     public function getTareaById($id_Tarea) {
         $tarea = new Tarea($this->db);
-        return $tarea->getById($id_Tarea); // Asume que el método getById existe en la capa de datos
+        return $tarea->getById($id_Tarea);
     }
 
     public function deleteById($id_Tarea) {

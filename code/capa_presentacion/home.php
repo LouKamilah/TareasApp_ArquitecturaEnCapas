@@ -16,114 +16,86 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-    <div class="flex justify-end p-4">
-        <form action="../capa_negocio/loginController.php?action=logout" method="post">
-            <button type="submit" class="font-medium text-white bg-black px-3 py-1 rounded-sm">Cerrar
-                sesión</button>
-        </form>
-    </div>
-    <div class="relative overflow-x-auto sm:rounded-lg mt-8">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
-                <tr>
-                    <th scope="col" class="p-4">
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        N° carga
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Cliente
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Sacos
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Estado
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Fase
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Fecha elaboración
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
+
+
+
+    <nav class="bg-white w-full z-20 top-0 start-0 border-b border-gray-200">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <svg class="w-8 h-8 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                        d="M7.111 20A3.111 3.111 0 0 1 4 16.889v-12C4 4.398 4.398 4 4.889 4h4.444a.89.89 0 0 1 .89.889v12A3.111 3.111 0 0 1 7.11 20Zm0 0h12a.889.889 0 0 0 .889-.889v-4.444a.889.889 0 0 0-.889-.89h-4.389a.889.889 0 0 0-.62.253l-3.767 3.665a.933.933 0 0 0-.146.185c-.868 1.433-1.581 1.858-3.078 2.12Zm0-3.556h.009m7.933-10.927 3.143 3.143a.889.889 0 0 1 0 1.257l-7.974 7.974v-8.8l3.574-3.574a.889.889 0 0 1 1.257 0Z" />
+                </svg>
+                <span class="self-center text-2xl font-semibold whitespace-nowrap">AgendaPro</span>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+
+                <form action="../capa_negocio/loginController.php?action=logout" method="post">
+                    <button type="submit" class="font-medium text-white bg-black px-3 py-1 rounded-sm">Cerrar
+                        sesión</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="container mx-auto w-[80%] mt-14">
+        <div class="relative overflow-x-auto">
+            <div class="flex justify-end mb-4">
+                <a href="crear.php" class="font-medium text-white bg-black px-3 py-1">Crear Tarea</a>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <?php
                 require_once '../capa_negocio/tareasController.php';
+
+                function formatEstado($estado) {
+                    switch ($estado) {
+                        case 'pendiente':
+                            return 'Pendiente';
+                        case 'en_proceso':
+                            return 'En Proceso';
+                        case 'completo':
+                            return 'Completo';
+                        default:
+                            return $estado;
+                    }
+                }
+
+                $colors = ['bg-blue-50', 'bg-red-50', 'bg-green-50', 'bg-yellow-50'];
+                $colorIndex = 0;
+
                 $tareasController = new TareasController();
-                $tareas = $tareasController->getTareasByUserId($_SESSION['user_id']); // Asegúrate de que 'user_id' esté en la sesión
+                $tareas = $tareasController->getTareasByUserId($_SESSION['user_id']);
 
                 foreach ($tareas as $tarea) {
-                    echo "<tr class='border-b odd:bg-white even:bg-gray-50 '>";
-                    echo "<td class='w-4 p-4'></td>";
-                    echo "<th scope='row' class='px-6 py-4 font-medium text-gray-900 whitespace-nowrap '>{$tarea['id_Tarea']}</th>";
-                    echo "<td class='px-6 py-4'>{$tarea['titulo']}</td>";
-                    echo "<td class='px-6 py-4'>{$tarea['descripcion']}</td>";
-                    echo "<td class='px-6 py-4'>{$tarea['estado']}</td>";
-                    echo "<td class='px-6 py-4'>{$tarea['date_asig']}</td>";
-                    echo "<td class='px-6 py-4'>{$tarea['update_at']}</td>";
-                    echo '<td class="px-2 lg:px-1">
-                    <form method="GET" action="../capa_presentacion/Editar.php">
-                    <input type="hidden" name="id_Tarea" value="' . $tarea['id_Tarea'] . '">
-                    <button type="submit" class="font-medium text-green-900 bg-green-200 px-3 py-1 rounded-sm hover:underline">
-                    Editar
-                    </button>
-                    </form>
-                    </td>';
-                    echo "<td class='px-2 lg:px-1'>
-                        <form method='POST' action='../capa_negocio/tareasController.php?action=eliminar_tarea'>
-                            <input type='hidden' name='id_Tarea' value='{$tarea['id_Tarea']}'>
-                            <button type='submit' class='font-medium text-red-900 bg-red-200 px-3 py-1 rounded-sm hover:underline'>
+                    $bgColor = $colors[$colorIndex % count($colors)];
+                    $colorIndex++;
+                    echo "<div class='p-4 mb-4 text-sm text-gray-800 rounded-lg $bgColor'>";
+                    echo "<span class='font-medium'></span> {$tarea['titulo']}<br>";
+                    echo "<span class='font-medium'></span> {$tarea['descripcion']}<br>";
+                    echo "<span class='font-medium'></span> " . formatEstado($tarea['estado']) . "<br>";
+                    echo "<span class='font-medium'></span> {$tarea['date_asig']}<br>";
+                    echo '<div class="mt-2 flex space-x-2">
+                        <form method="GET" action="../capa_presentacion/Editar.php">
+                            <input type="hidden" name="id_Tarea" value="' . $tarea['id_Tarea'] . '">
+                            <button type="submit" class="font-medium text-green-900 bg-green-200 px-3 py-1 rounded-sm hover:underline">
+                                Editar
+                            </button>
+                        </form>
+                        <form method="POST" action="../capa_negocio/tareasController.php?action=eliminar_tarea">
+                            <input type="hidden" name="id_Tarea" value="' . $tarea['id_Tarea'] . '">
+                            <button type="submit" class="font-medium text-red-900 bg-red-200 px-3 py-1 rounded-sm hover:underline">
                                 Eliminar
                             </button>
                         </form>
-                    </td>";
-                    echo "</tr>";
+                    </div>';
+                    echo "</div>";
                 }
                 ?>
-            </tbody>
-        </table>
-
-        <nav class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4"
-            aria-label="Table navigation">
-            <span class="text-sm font-normal text-gray-500 mb-4 md:mb-0 block w-full md:inline md:w-auto">Showing
-                <span class="font-semibold text-gray-900 ">1-10</span> of <span
-                    class="font-semibold text-gray-900 ">1000</span></span>
-            <ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
-                <li>
-                    <a href="#"
-                        class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700   ">Previous</a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700   ">1</a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700   ">2</a>
-                </li>
-                <li>
-                    <a href="#" aria-current="page"
-                        class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700   ">3</a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700   ">4</a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700   ">5</a>
-                </li>
-                <li>
-                    <a href="#"
-                        class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700   ">Next</a>
-                </li>
-            </ul>
-        </nav>
-
+            </div>
+        </div>
     </div>
 
     <script src="../../node_modules/flowbite/dist/flowbite.min.js"></script>
